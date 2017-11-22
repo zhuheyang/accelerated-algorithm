@@ -11,6 +11,36 @@ struct TreeNode {
 */
 
 class TreePrinter {
+    public:
+    vector<vector<int> >printTree(TreeNode* root) {
+        int dep[550], head = 0, tail = 0;
+        TreeNode *now, *q[550];
+        q[tail++] = root; dep[root->val] = 0;
+        while(head != tail) {
+             now = q[head ++];
+             if(now -> left) {
+                 q[tail ++] = now -> left, dep[now -> left -> val] = dep[now -> val] + 1;
+             }
+             if(now -> right) {
+                 q[tail ++] = now -> right, dep[now -> right -> val] = dep[now -> val] + 1;
+             }
+        }
+        vecrot<vector<int> > ret;
+        for(int j, i = 0;  i < tail; i = j) {
+            vector<int> tmp;
+            j = i;
+            while(j < tail && dep[q[j] -> val] == dep[q[i] -> val]) {
+                tmp.push_back(q[j] -> val);
+                ++ j;
+            }
+            ret.push_back(temp);
+        }
+        return ret;
+    }
+};</int></vector<int></vector><int>
+
+
+class TreePrinter2 {
 public:
   vector<vector<int>> printTree(TreeNode* root) {
     // write code here
